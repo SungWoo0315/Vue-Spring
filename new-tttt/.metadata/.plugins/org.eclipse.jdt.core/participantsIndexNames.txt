@@ -1,0 +1,5 @@
+INDEX VERSION 1.131
+C:\Users\lsw\Desktop\new-tttt\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3178133098.index
+\ex00\src\main\java
+E:\GitHub\Vue-Spring\new-tttt\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3178133098.index
+\ex00\src\main\java

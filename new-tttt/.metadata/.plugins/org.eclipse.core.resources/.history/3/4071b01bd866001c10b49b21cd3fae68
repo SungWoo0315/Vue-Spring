@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dream.mapper.BoardMapper">
+
+	<resultMap type="com.dream.vo.BoardVO" id="boardMap">
+		<id property="b_no" column="b_no"></id>
+		<result property="subject" column="subject"/>
+		<result property="content" column="content"/>
+		<result property="writer" column="writer"/>
+		<result property="reg_date" column="reg_date"/>
+		
+		<result property="pic" column="pic"/>
+	</resultMap>
+	
+	<select id="getBoardList" resultMap="boardMap">
+		select 
+		    b_no
+		    ,subject
+		    ,writer
+		    ,content
+		    ,pwd
+		    ,email
+		    ,to_char(reg_date, 'YYYY-DD-MM(DY)')  as "reg_date" 
+		    ,readcount
+		    ,group_no
+		    ,print_no
+		    ,print_level
+		    ,nvl2(pic, '있음', '없음') as "pic"
+		from 
+		    board
+		order by 1    
+	</select>
+	
+	<insert id="regBoard">
+	
+		insert into board 
+			(b_no,subject, writer, content, email, pwd, reg_date, readcount, group_no, print_no, print_level)
+		values ( (select nvl(max(b_no),0)+1 from board), #{subject}, #{writer}, #{content}, #{email}, #{pwd}, sysdate, 0, 1, 0, 0)
+	
+	</insert>
+	
+	
+	<select id="getBoardDetail" resultMap="boardMap">
+		select * from board where b_no = #{b_no}
+	
+	</select>
+	
+	
+	<update id="editBoard">
+	
+		update board 
+		set 
+			subject = #{subject}
+			,content = #{content}
+			,writer = #{writer}
+			,reg_date = sysdate
+		where 
+			b_no = #{b_no}	
+	
+	</update>
+	
+	
+
+</mapper>
