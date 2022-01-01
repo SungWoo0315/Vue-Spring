@@ -2,13 +2,18 @@
   <div>
     <!-- 글 상세 보기 내용 -->
     <el-dialog title="글 상세 보기" :visible.sync="openDetail" width="50%" center :close-on-click-modal="false">
-    글번호 : <el-input :value="boardDetail.b_no" style = "margin-bottom:10px; width:20%" >글번호</el-input>
+        
+        <!-- 글번호 : <el-input :value="boardDetail.b_no" style = "margin-bottom:10px; width:20%" ></el-input> -->
                                         <br>
         글 번호 : {{ boardDetail.b_no }} <br>
+                                        <br>
         제목 : {{ boardDetail.subject }} <br>
+                                        <br>
         등록일 : {{ boardDetail.reg_date }} <br>
-        내용 : {{ boardDetail.content }} <br>
+                                        <br>
         작성자 : {{ boardDetail.writer }} <br>
+                                        <br>
+        내용 : {{ boardDetail.content }} <br>
 
     <el-input style="margin-top:10px" placeholder="암호를 입력하세요" v-model="check_pwd" show-password v-show="vshow"></el-input>
 
@@ -67,6 +72,7 @@ export default {
                     if(response.data.success) {
                         this.boardDetail = response.data.result;
                         this.openDetail = true;
+                        console.log(location.origin);
                     }
                 })
                 .catch(function(error) {
